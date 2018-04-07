@@ -8,7 +8,8 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 
-@RestController(value = "/veterinarian")
+@RestController
+@RequestMapping("/veterinarian")
 public class VeterinarianController {
 
     @Resource

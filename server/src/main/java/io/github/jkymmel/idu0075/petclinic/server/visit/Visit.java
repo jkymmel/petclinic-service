@@ -11,10 +11,11 @@ import java.time.LocalDateTime;
 @Data
 public class Visit {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String uuid;
     private String pet;
     private LocalDateTime time;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "veterinarian_id")
     private Veterinarian veterinarian;
 }

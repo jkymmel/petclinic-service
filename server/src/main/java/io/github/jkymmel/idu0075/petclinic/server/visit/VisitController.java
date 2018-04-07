@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-@RestController(value = "/visit")
+@RestController
+@RequestMapping("/visit")
 public class VisitController {
 
     @Resource
@@ -22,12 +23,12 @@ public class VisitController {
     @GetMapping(value = "/:uuid")
     private ResponseEntity<Visit> findByUuid(@PathVariable String uuid) {
         return visitService.findByUuid(uuid)
-                .map(veterinarian -> new ResponseEntity<>(veterinarian, HttpStatus.OK))
+                .map(visit -> new ResponseEntity<>(visit, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    private ResponseEntity<Visit> save(@RequestBody Visit veterinarian) {
-        return new ResponseEntity<>(visitService.save(veterinarian), HttpStatus.OK);
+    private ResponseEntity<Visit> save(@RequestBody Visit visit) {
+        return new ResponseEntity<>(visitService.save(visit), HttpStatus.OK);
     }
 }

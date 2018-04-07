@@ -12,6 +12,7 @@ import java.util.UUID;
 @Entity
 public class Veterinarian {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String uuid;
     private String name;
     private String email;

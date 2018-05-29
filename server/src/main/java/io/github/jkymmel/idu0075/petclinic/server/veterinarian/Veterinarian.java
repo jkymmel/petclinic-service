@@ -1,22 +1,27 @@
 package io.github.jkymmel.idu0075.petclinic.server.veterinarian;
 
-import io.github.jkymmel.idu0075.petclinic.server.visit.Visit;
+import io.github.jkymmel.idu0075.petclinic.server.pet.Pet;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Veterinarian {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String uuid;
+    @GeneratedValue
+    private Long id;
     private String name;
     private String email;
     private String phoneNumber;
+    private String personalCode;
     @OneToMany(mappedBy = "veterinarian")
-    private List<Visit> visits;
+    private List<Pet> pets;
 }

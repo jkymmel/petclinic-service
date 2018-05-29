@@ -18,8 +18,8 @@ public class VeterinarianService {
         return veterinarianRepository.save(veterinarian);
     }
 
-    public Optional<Veterinarian> findByUuid(String uuid) {
-        return veterinarianRepository.findById(uuid);
+    public Optional<Veterinarian> findById(Long id) {
+        return veterinarianRepository.findById(id);
     }
 
     public List<Veterinarian> findAll() {

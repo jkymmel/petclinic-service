@@ -1,0 +1,167 @@
+<xs:schema targetNamespace="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl"
+           xmlns:tns="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xs:complexType name="PetModel">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="owner" type="xs:string"/>
+            <xs:element name="birthday" type="xs:date" minOccurs="0"/>
+            <xs:element name="veterinarian" type="tns:VeterinarianModel" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VeterinarianModel">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="personalCode">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="^\d{11}$"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="phoneNumber" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="SavePetRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+                <xs:element name="pet" type="tns:PetModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SavePetResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pet" type="tns:PetModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetPetRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+                <xs:element name="uuid" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetPetResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pet" type="tns:PetModel" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllPetsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllPetsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pet" type="tns:PetModel" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SaveVeterinarianRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+                <xs:element name="veterinarian" type="tns:VeterinarianModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SaveVeterinarianResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="veterinarian" type="tns:VeterinarianModel"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetVeterinarianRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+                <xs:element name="uuid" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetVeterinarianResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="veterinarian" type="tns:VeterinarianModel" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="GetAllVeterinariansRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetAllVeterinariansResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="veterinarian" type="tns:VeterinarianModel" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="SetPetVeterinarianRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+                <xs:element name="petId" type="xs:long"/>
+                <xs:element name="veterinarianId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SetPetVeterinarianResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="veterinarian" type="tns:VeterinarianModel" minOccurs="0"/>
+                <xs:element name="pet" type="tns:PetModel" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetVeterinarianPetsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+                <xs:element name="veterinarianId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="GetVeterinarianPetsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pet" type="tns:PetModel" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

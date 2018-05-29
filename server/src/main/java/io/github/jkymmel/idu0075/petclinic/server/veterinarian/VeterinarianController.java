@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/veterinarian")
@@ -20,9 +19,9 @@ public class VeterinarianController {
         return new ResponseEntity<>(veterinarianService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/:uuid")
-    private ResponseEntity<Veterinarian> findByUuid(@PathVariable String uuid) {
-        return veterinarianService.findByUuid(uuid)
+    @GetMapping(value = "/:id")
+    private ResponseEntity<Veterinarian> findByUuid(@PathVariable Long id) {
+        return veterinarianService.findById(id)
                 .map(veterinarian -> new ResponseEntity<>(veterinarian, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }

@@ -48,7 +48,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="apiKey" type="xs:string"/>
-                <xs:element name="uuid" type="xs:string"/>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -98,7 +98,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="apiKey" type="xs:string"/>
-                <xs:element name="uuid" type="xs:string"/>
+                <xs:element name="id" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -142,7 +142,6 @@
     <xs:element name="SetPetVeterinarianResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="veterinarian" type="tns:VeterinarianModel" minOccurs="0"/>
                 <xs:element name="pet" type="tns:PetModel" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>

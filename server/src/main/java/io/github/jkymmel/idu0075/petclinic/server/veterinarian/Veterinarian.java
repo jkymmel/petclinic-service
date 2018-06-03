@@ -16,12 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 public class Veterinarian {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private String phoneNumber;
     private String personalCode;
-    @OneToMany(mappedBy = "veterinarian")
-    private List<Pet> pets;
 }

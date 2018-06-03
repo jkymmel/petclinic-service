@@ -25,7 +25,7 @@ public class PetWebService {
     @Resource
     private PetModelMapper petModelMapper;
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "SavePet")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "SavePetRequest")
     @ResponsePayload
     public SavePetResponse savePet(SavePetRequest savePetRequest){
         if (securityConfig.getKey().equals(savePetRequest.getApiKey())) {

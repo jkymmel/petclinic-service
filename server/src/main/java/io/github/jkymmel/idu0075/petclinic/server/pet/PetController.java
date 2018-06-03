@@ -68,4 +68,10 @@ public class PetController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("veterinarian/{veterinarianId}")
+    @ApiOperation("Get pets based on veterinarian's ID.")
+    private ResponseEntity<List<Pet>> GetVeterinarianPets(@PathVariable Long veterinarianId) {
+        return new ResponseEntity<>(petService.findByVeterinarianId(veterinarianId), HttpStatus.OK);
+    }
 }

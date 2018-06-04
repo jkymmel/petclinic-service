@@ -153,3 +153,5 @@ All SOAP requests require a API key to be set. The key can beset in active `appl
 The documentation for REST service will get automagically generated and will be available on the URL mentioned before.
 
 An API key is required for authentication. It should be sent as the `Authorization` header.
+
+Postman collection with example requests can be [here](https://documenter.getpostman.com/view/2819899/petclinic/RW8FGmhX#a5cb3672-f329-bf96-53d7-2f3c0a44f9d7). It is also included in the repository.

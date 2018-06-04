@@ -42,10 +42,11 @@ while True:
                 'name': name,
                 'owner': owner,
                 'birthday': datetime.datetime.strptime(birthday, "%Y-%m-%d").date()
-            }
+            },
+            apiKey=api_key
         )
         print('Saved!')
-        print(pet['pet'])
+        print(format_pet(pet['pet']))
         print('\n\n')
     elif operation == '9':
         exit(0)

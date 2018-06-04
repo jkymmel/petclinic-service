@@ -34,12 +34,12 @@ while(True):
     elif operation == '1':
         name = input('Enter name: ')
         owner = input('Enter owner: ')
-        birthday = input('Enter birthday (YYYY-MM-dd): ')
+        birthday = input('Enter birthday (yyyy-mm-dd): ')
         pet = client.SavePet(
             pet={
                 'name': name,
                 'owner': owner,
-                'birthday': datetime.date
+                'birthday': datetime.datetime.strptime(birthday, "%Y-%m-%d").date()
             }
         )
         print('Saved!')

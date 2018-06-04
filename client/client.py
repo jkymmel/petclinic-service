@@ -8,19 +8,21 @@ client = SoapClient(wsdl='http://localhost:8080/ws/PetClinicWebService.wsdl', tr
 
 api_key = input('Please enter API key: ')
 
+
 def format_pet(pet):
     return f'PET:\n  + ID: {pet["id"]}\n  + name: {pet["name"]}\n  + owner: {pet["owner"]}\n' \
            f'  + veterinarian: {format_vet(pet.get("veterinarian", None))}'
 
+
 def format_vet(vet):
-    if vet != None:
+    if vet is not None:
         return f'\n    + ID: {vet["id"]}\n    + name: {vet["name"]}\n    + email: {vet["email"]}\n' \
-           f'    + phone number: {vet["phoneNumber"]}\n    + personal code: {vet["personalCode"]}'
+               f'    + phone number: {vet["phoneNumber"]}\n    + personal code: {vet["personalCode"]}'
     else:
         return 'None'
-    
 
-while(True):
+
+while True:
     operation = input(
         'Available operations:\n0: List all pets\n1: Add new Pet\n9: Exit\nPlease enter the number of operation: ')
     if operation == '0':

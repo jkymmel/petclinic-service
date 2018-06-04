@@ -76,11 +76,11 @@ The SOAP service consists of 8 operations.
 
 All SOAP requests require a API key to be set. The key can be set in active `application.properties` configuration.
 
-For exact datastructures refer to the WSDL file generated.
-
 ##### GetAllPets
 
 > Return a list of all pets registered with their veterinarians.
+
+![](screenshots/GetAllPets.png)
 
 
 
@@ -88,11 +88,15 @@ For exact datastructures refer to the WSDL file generated.
 
 > Return a list of all veterinarians in the clinic.
 
+![](screenshots/GetAllVeterinarians.png)
+
 
 
 ##### GetPet
 
 > Return a pet with corresponding ID if it exists.
+
+![](screenshots/GetPet.png)
 
 
 
@@ -100,11 +104,15 @@ For exact datastructures refer to the WSDL file generated.
 
 > Return a veterinarian with corresponding ID if he/she exists.
 
+![](screenshots/GetVeterinarian.png)
+
 
 
 ##### GetVeterinarianPets
 
 > Return a list of pets that visit veterinarian with given ID.
+
+![](screenshots/GetVeterinarianPets.png)
 
 
 
@@ -112,20 +120,36 @@ For exact datastructures refer to the WSDL file generated.
 
 > Save pet. If ID conflicts with an existing pet, the existing record will get overwritten.
 
+![](screenshots/SavePet.png)
+
 
 
 ##### SaveVeterinarian
 
 > Save veterinarian. If ID conflicts with an existing veterinarian, the existing record will get overwritten.
 
+![](screenshots/SaveVeterinarian.png)
 
 
-##### SavePetVeterinarian
+
+##### SetPetVeterinarian
 
 > Set a veterinarian for a pet, if both with given ID-s exist.
+
+![](screenshots/SetPetVeterinarian.png)
+
+
+
+##### SearchVeterinarians
+
+> Search for veterinarians. Vets can be filtered by name, email and phone number. All the parameters are optional. A vet matches if his/her property contains corresponding search argument.
+
+![](screenshots/SearchVeterinarians.png)
 
 
 
 ### REST
 
 The documentation for REST service will get automagically generated and will be available on the URL mentioned before.
+
+An API key is required for authentication. It should be sent as the `Authorization` header.

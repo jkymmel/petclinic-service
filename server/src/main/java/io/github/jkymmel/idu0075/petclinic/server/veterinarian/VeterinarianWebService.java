@@ -84,4 +84,22 @@ public class VeterinarianWebService {
             return new SaveVeterinarianResponse();
         }
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "SearchVeterinariansRequest")
+    @ResponsePayload
+    public SearchVeterinariansResponse searchVeterinarians(@RequestPayload SearchVeterinariansRequest searchVeterinariansRequest){
+        if (securityConfig.getKey().equals(searchVeterinariansRequest.getApiKey())) {
+            SearchVeterinariansResponse response = new SearchVeterinariansResponse();
+            response.getVeterinarian().addAll(veterinarianService.findAll()
+                    .stream()
+                    .filter(vet -> searchVeterinariansRequest.getName() == null || vet.getName().contains(searchVeterinariansRequest.getName()))
+                    .filter(vet -> searchVeterinariansRequest.getEmail() == null || vet.getEmail().contains(searchVeterinariansRequest.getEmail()))
+                    .filter(vet -> searchVeterinariansRequest.getPhoneNumber() == null || vet.getPhoneNumber().contains(searchVeterinariansRequest.getPhoneNumber()))
+                    .map(vet -> veterinarianModelMapper.toJaxb(vet))
+                    .collect(Collectors.toList()));
+            return response;
+        } else {
+            return new SearchVeterinariansResponse();
+        }
+    }
 }

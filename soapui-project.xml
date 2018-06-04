@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="bf3d962b-2072-4512-b821-7d48994607e9" activeEnvironment="Default" name="PetClinic" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="8d2796e0-7142-49a0-b42d-c1982304dc7c" wsaVersion="NONE" name="PetClinicPortSoap11" type="wsdl" bindingName="{http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl}PetClinicPortSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/ws/PetClinicWebService.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/ws/PetClinicWebService.wsdl"><con:part><con:url>http://localhost:8080/ws/PetClinicWebService.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="PetModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="owner" type="xs:string"/>
+          <xs:element minOccurs="0" name="birthday" type="xs:date"/>
+          <xs:element minOccurs="0" name="veterinarian" type="tns:VeterinarianModel"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="VeterinarianModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="email" type="xs:string"/>
+          <xs:element name="personalCode">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:pattern value="^\d{11}$"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="phoneNumber" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="SavePetRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+            <xs:element name="pet" type="tns:PetModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SavePetResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="pet" type="tns:PetModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPetRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+            <xs:element name="id" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetPetResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="pet" type="tns:PetModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllPetsRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllPetsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="pet" type="tns:PetModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveVeterinarianRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+            <xs:element name="veterinarian" type="tns:VeterinarianModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SaveVeterinarianResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="veterinarian" type="tns:VeterinarianModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetVeterinarianRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+            <xs:element name="id" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetVeterinarianResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="veterinarian" type="tns:VeterinarianModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllVeterinariansRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAllVeterinariansResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="veterinarian" type="tns:VeterinarianModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetPetVeterinarianRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+            <xs:element name="petId" type="xs:long"/>
+            <xs:element name="veterinarianId" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetPetVeterinarianResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="pet" type="tns:PetModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetVeterinarianPetsRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+            <xs:element name="veterinarianId" type="xs:long"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetVeterinarianPetsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="pet" type="tns:PetModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SearchVeterinariansRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="apiKey" type="xs:string"/>
+            <xs:element minOccurs="0" name="name" type="xs:string"/>
+            <xs:element minOccurs="0" name="phoneNumber" type="xs:string"/>
+            <xs:element minOccurs="0" name="email" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SearchVeterinariansResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="veterinarian" type="tns:VeterinarianModel"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetVeterinarianPetsResponse">
+    <wsdl:part element="tns:GetVeterinarianPetsResponse" name="GetVeterinarianPetsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SetPetVeterinarianRequest">
+    <wsdl:part element="tns:SetPetVeterinarianRequest" name="SetPetVeterinarianRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SaveVeterinarianResponse">
+    <wsdl:part element="tns:SaveVeterinarianResponse" name="SaveVeterinarianResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPetRequest">
+    <wsdl:part element="tns:GetPetRequest" name="GetPetRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SetPetVeterinarianResponse">
+    <wsdl:part element="tns:SetPetVeterinarianResponse" name="SetPetVeterinarianResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllVeterinariansRequest">
+    <wsdl:part element="tns:GetAllVeterinariansRequest" name="GetAllVeterinariansRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SearchVeterinariansResponse">
+    <wsdl:part element="tns:SearchVeterinariansResponse" name="SearchVeterinariansResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllPetsResponse">
+    <wsdl:part element="tns:GetAllPetsResponse" name="GetAllPetsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetPetResponse">
+    <wsdl:part element="tns:GetPetResponse" name="GetPetResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllPetsRequest">
+    <wsdl:part element="tns:GetAllPetsRequest" name="GetAllPetsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SavePetResponse">
+    <wsdl:part element="tns:SavePetResponse" name="SavePetResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetVeterinarianPetsRequest">
+    <wsdl:part element="tns:GetVeterinarianPetsRequest" name="GetVeterinarianPetsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SearchVeterinariansRequest">
+    <wsdl:part element="tns:SearchVeterinariansRequest" name="SearchVeterinariansRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SaveVeterinarianRequest">
+    <wsdl:part element="tns:SaveVeterinarianRequest" name="SaveVeterinarianRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetVeterinarianRequest">
+    <wsdl:part element="tns:GetVeterinarianRequest" name="GetVeterinarianRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllVeterinariansResponse">
+    <wsdl:part element="tns:GetAllVeterinariansResponse" name="GetAllVeterinariansResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SavePetRequest">
+    <wsdl:part element="tns:SavePetRequest" name="SavePetRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetVeterinarianResponse">
+    <wsdl:part element="tns:GetVeterinarianResponse" name="GetVeterinarianResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PetClinicPort">
+    <wsdl:operation name="GetVeterinarianPets">
+      <wsdl:input message="tns:GetVeterinarianPetsRequest" name="GetVeterinarianPetsRequest"></wsdl:input>
+      <wsdl:output message="tns:GetVeterinarianPetsResponse" name="GetVeterinarianPetsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPetVeterinarian">
+      <wsdl:input message="tns:SetPetVeterinarianRequest" name="SetPetVeterinarianRequest"></wsdl:input>
+      <wsdl:output message="tns:SetPetVeterinarianResponse" name="SetPetVeterinarianResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveVeterinarian">
+      <wsdl:input message="tns:SaveVeterinarianRequest" name="SaveVeterinarianRequest"></wsdl:input>
+      <wsdl:output message="tns:SaveVeterinarianResponse" name="SaveVeterinarianResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPet">
+      <wsdl:input message="tns:GetPetRequest" name="GetPetRequest"></wsdl:input>
+      <wsdl:output message="tns:GetPetResponse" name="GetPetResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllVeterinarians">
+      <wsdl:input message="tns:GetAllVeterinariansRequest" name="GetAllVeterinariansRequest"></wsdl:input>
+      <wsdl:output message="tns:GetAllVeterinariansResponse" name="GetAllVeterinariansResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchVeterinarians">
+      <wsdl:input message="tns:SearchVeterinariansRequest" name="SearchVeterinariansRequest"></wsdl:input>
+      <wsdl:output message="tns:SearchVeterinariansResponse" name="SearchVeterinariansResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPets">
+      <wsdl:input message="tns:GetAllPetsRequest" name="GetAllPetsRequest"></wsdl:input>
+      <wsdl:output message="tns:GetAllPetsResponse" name="GetAllPetsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePet">
+      <wsdl:input message="tns:SavePetRequest" name="SavePetRequest"></wsdl:input>
+      <wsdl:output message="tns:SavePetResponse" name="SavePetResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVeterinarian">
+      <wsdl:input message="tns:GetVeterinarianRequest" name="GetVeterinarianRequest"></wsdl:input>
+      <wsdl:output message="tns:GetVeterinarianResponse" name="GetVeterinarianResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PetClinicPortSoap11" type="tns:PetClinicPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetVeterinarianPets">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetVeterinarianPetsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetVeterinarianPetsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPetVeterinarian">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SetPetVeterinarianRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SetPetVeterinarianResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveVeterinarian">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SaveVeterinarianRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SaveVeterinarianResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPet">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetPetRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetPetResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllVeterinarians">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllVeterinariansRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllVeterinariansResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchVeterinarians">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SearchVeterinariansRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SearchVeterinariansResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPets">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetAllPetsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllPetsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePet">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="SavePetRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SavePetResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVeterinarian">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetVeterinarianRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetVeterinarianResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PetClinicPortService">
+    <wsdl:port binding="tns:PetClinicPortSoap11" name="PetClinicPortSoap11">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ws</con:endpoint></con:endpoints><con:operation id="4997e291-a9a1-4329-9cbe-29ec998fc087" isOneWay="false" action="" name="GetAllPets" bindingOperationName="GetAllPets" type="Request-Response" outputName="GetAllPetsResponse" inputName="GetAllPetsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="774b400e-6e42-4f92-b6de-23767f6117d3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wsdl:GetAllPetsRequest>\r
+         <wsdl:apiKey>hello123</wsdl:apiKey>\r
+      </wsdl:GetAllPetsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/GetAllPetsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="bab0ca5a-ad8f-4bd0-8843-b4663d30b080" isOneWay="false" action="" name="GetAllVeterinarians" bindingOperationName="GetAllVeterinarians" type="Request-Response" outputName="GetAllVeterinariansResponse" inputName="GetAllVeterinariansRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="85d203d1-a029-4914-91a3-d2031ba85c88" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wsdl:GetAllVeterinariansRequest>\r
+         <wsdl:apiKey>hello123</wsdl:apiKey>\r
+      </wsdl:GetAllVeterinariansRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/GetAllVeterinariansRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="a959b7f3-4740-492c-9630-a94a72a0aeec" isOneWay="false" action="" name="GetPet" bindingOperationName="GetPet" type="Request-Response" outputName="GetPetResponse" inputName="GetPetRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="621af4a3-a897-4ef0-bfeb-210a43fe3e47" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:GetPetRequest>
+         <wsdl:apiKey>hello123</wsdl:apiKey>
+         <wsdl:id>1</wsdl:id>
+      </wsdl:GetPetRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/GetPetRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c07ec86c-3f15-4dfa-9017-d960a42b8506" isOneWay="false" action="" name="GetVeterinarian" bindingOperationName="GetVeterinarian" type="Request-Response" outputName="GetVeterinarianResponse" inputName="GetVeterinarianRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c488dde7-b5e8-4ce4-9807-15942261b2c3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:GetVeterinarianRequest>
+         <wsdl:apiKey>hello123</wsdl:apiKey>
+         <wsdl:id>1</wsdl:id>
+      </wsdl:GetVeterinarianRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/GetVeterinarianRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="32ce6156-225f-4b2c-b94f-4427bd94064c" isOneWay="false" action="" name="GetVeterinarianPets" bindingOperationName="GetVeterinarianPets" type="Request-Response" outputName="GetVeterinarianPetsResponse" inputName="GetVeterinarianPetsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="38205731-c7c0-4d40-b552-21e6b7630f5d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wsdl:GetVeterinarianPetsRequest>\r
+         <wsdl:apiKey>hello123</wsdl:apiKey>\r
+         <wsdl:veterinarianId>1</wsdl:veterinarianId>\r
+      </wsdl:GetVeterinarianPetsRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/GetVeterinarianPetsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="547b77aa-1d36-406f-817f-39aa2f279e64" isOneWay="false" action="" name="SavePet" bindingOperationName="SavePet" type="Request-Response" outputName="SavePetResponse" inputName="SavePetRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5aec8fb5-10f3-4a14-9535-bf1372b14392" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wsdl:SavePetRequest>
+         <wsdl:apiKey>hello123</wsdl:apiKey>
+         <wsdl:pet>
+            <!--Optional:-->
+            <wsdl:id>1</wsdl:id>
+            <wsdl:name>Catto</wsdl:name>
+            <wsdl:owner>None</wsdl:owner>
+            <!--Optional:-->
+            <wsdl:birthday>2018-06-05</wsdl:birthday>
+         </wsdl:pet>
+      </wsdl:SavePetRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/SavePetRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="cb411058-7436-45e1-90c7-36331dac132e" isOneWay="false" action="" name="SaveVeterinarian" bindingOperationName="SaveVeterinarian" type="Request-Response" outputName="SaveVeterinarianResponse" inputName="SaveVeterinarianRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="76be001c-536d-410a-a1ec-a417fc67fd94" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wsdl:SaveVeterinarianRequest>\r
+         <wsdl:apiKey>hello123</wsdl:apiKey>\r
+         <wsdl:veterinarian>\r
+            <!--Optional:-->\r
+            <wsdl:id>3</wsdl:id>\r
+            <wsdl:name>Bertram Gilfoyle</wsdl:name>\r
+            <wsdl:email>bertram@piedpiper.com</wsdl:email>\r
+            <wsdl:personalCode>38503214381</wsdl:personalCode>\r
+            <wsdl:phoneNumber>5918309</wsdl:phoneNumber>\r
+         </wsdl:veterinarian>\r
+      </wsdl:SaveVeterinarianRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/SaveVeterinarianRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d247b347-1ca3-4a20-bafc-1d8839652f35" isOneWay="false" action="" name="SetPetVeterinarian" bindingOperationName="SetPetVeterinarian" type="Request-Response" outputName="SetPetVeterinarianResponse" inputName="SetPetVeterinarianRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ac51ff17-93e4-4f01-9646-32a4f153969e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wsdl:SetPetVeterinarianRequest>\r
+         <wsdl:apiKey>hello123</wsdl:apiKey>\r
+         <wsdl:petId>6</wsdl:petId>\r
+         <wsdl:veterinarianId>3</wsdl:veterinarianId>\r
+      </wsdl:SetPetVeterinarianRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/SetPetVeterinarianRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="cd1cba32-a604-41f6-9795-afa8454fe425" isOneWay="false" action="" name="SearchVeterinarians" bindingOperationName="SearchVeterinarians" type="Request-Response" outputName="SearchVeterinariansResponse" inputName="SearchVeterinariansRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3a9a7664-5c5d-4827-be5a-128bbb1aa07d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsdl="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <wsdl:SearchVeterinariansRequest>\r
+         <wsdl:apiKey>hello123</wsdl:apiKey>\r
+         <!--Optional:-->\r
+         <wsdl:name>o</wsdl:name>\r
+         <!--Optional:-->\r
+         <wsdl:phoneNumber>5</wsdl:phoneNumber>\r
+         <!--Optional:-->\r
+         <wsdl:email>@</wsdl:email>\r
+      </wsdl:SearchVeterinariansRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.ttu.ee/idu0075/2018/ws/petclinic/wsdl/PetClinicPort/SearchVeterinariansRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

@@ -33,6 +33,10 @@ public class VeterinarianController {
     @PostMapping
     @ApiOperation("Save existing or new veterinarian.")
     private ResponseEntity<Veterinarian> save(@RequestBody Veterinarian veterinarian) {
-        return new ResponseEntity<>(veterinarianService.save(veterinarian), HttpStatus.OK);
+        if (veterinarian.getPersonalCode().matches("^\\d{11}$")) {
+            return new ResponseEntity<>(veterinarianService.save(veterinarian), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 }

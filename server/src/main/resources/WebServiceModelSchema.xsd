@@ -163,4 +163,23 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:element name="SearchVeterinariansRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="apiKey" type="xs:string"/>
+                <xs:element name="name" type="xs:string" minOccurs="0"/>
+                <xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
+                <xs:element name="email" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="SearchVeterinariansResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="veterinarian" type="tns:VeterinarianModel" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>

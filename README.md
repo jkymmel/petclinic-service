@@ -30,7 +30,7 @@ WSDL will be available on http://localhost:8080/ws/PetClinicWebService.wsdl
 
 ### Introduction
 
-Pets and Veterinarians are persisted into a relational database using Hibernate (JPA). For SOAP services, the datamodel schema is located in `src/main/resources/DiplomaService.xsd`
+Pets and Veterinarians are persisted into a relational database using Hibernate (JPA). For SOAP services, the datamodel schema is located in `src/main/resources/WebServiceModelSchema.xsd`
 
 SOAP services use classes generated from the XSD file.
 
@@ -74,7 +74,7 @@ Pet has following properties:
 
 The SOAP service consists of 8 operations.
 
-All SOAP requests require a API key to be set. The key can be set in active `application.properties` configuration.
+All SOAP requests require a API key to be set. The key can beset in active `application.properties` configuration.
 
 ##### GetAllPets
 

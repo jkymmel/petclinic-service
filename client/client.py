@@ -26,18 +26,18 @@ while True:
     operation = input(
         'Available operations:\n0: List all pets\n1: Add new Pet\n9: Exit\nPlease enter the number of operation: ')
     if operation == '0':
-        pets = client.GetAllPets(
+        response = client.GetAllPets(
             apiKey=api_key
         )
         print('\nPETS:\n')
-        for pet in pets['pet']:
+        for pet in response['pet']:
             print(format_pet(pet))
         print('\n\n')
     elif operation == '1':
         name = input('Enter name: ')
         owner = input('Enter owner: ')
         birthday = input('Enter birthday (yyyy-mm-dd): ')
-        pet = client.SavePet(
+        response = client.SavePet(
             pet={
                 'name': name,
                 'owner': owner,
@@ -46,7 +46,7 @@ while True:
             apiKey=api_key
         )
         print('Saved!')
-        print(format_pet(pet['pet']))
+        print(format_pet(response['pet']))
         print('\n\n')
     elif operation == '9':
         exit(0)

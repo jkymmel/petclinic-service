@@ -3,7 +3,6 @@ package io.github.jkymmel.idu0075.petclinic.server.pet;
 import io.github.jkymmel.idu0075.petclinic.server.veterinarian.Veterinarian;
 import io.github.jkymmel.idu0075.petclinic.server.veterinarian.VeterinarianService;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

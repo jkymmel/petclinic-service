@@ -76,6 +76,8 @@ The SOAP service consists of 8 operations.
 
 All SOAP requests require a API key to be set. The key can beset in active `application.properties` configuration.
 
+For exact docs refer to the WSDL.
+
 ##### GetAllPets
 
 > Return a list of all pets registered with their veterinarians.

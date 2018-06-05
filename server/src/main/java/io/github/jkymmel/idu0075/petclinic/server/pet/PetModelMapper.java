@@ -11,7 +11,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import java.time.ZoneId;
 import java.util.GregorianCalendar;
-import java.util.Optional;
 
 @Component
 public class PetModelMapper {
